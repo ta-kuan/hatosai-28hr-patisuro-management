@@ -42,7 +42,7 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
       // Bだけログイン
-      \const auth = getAuth();
+      const auth = getAuth();
       signInAnonymously(auth);
       // 送信
       window.send = (id, inputId) => {

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <input id="text1">
+      <button onclick="send(1,'text1')">送信1</button>
+    </div>
+    <div>
+      <input id="text2">
+      <button onclick="send(2,'text2')">送信2</button>
+    </div>
+    <div>
+      <input id="text3">
+      <button onclick="send(3,'text3')">送信3</button>
+    </div>
+    <div>
+      <input id="text4">
+      <button onclick="send(4,'text4')">送信4</button>
+    </div>
+    <div>
+      <input id="text5">
+      <button onclick="send(5,'text5')">送信5</button>
+    </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+      import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      const firebaseConfig = {
+        apiKey: "",
+        authDomain: "",
+        databaseURL: "",
+        projectId: ""
+      };
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      // Bだけログイン
+      \const auth = getAuth();
+      signInAnonymously(auth);
+      // 送信
+      window.send = (id, inputId) => {
+        const text = document.getElementById(inputId).value;
+        set(ref(db, "messages/" + id), text);
+      };
+    </script>
+  </body>
+</html>

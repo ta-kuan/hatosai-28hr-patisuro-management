@@ -20,9 +20,25 @@
       }
       .titlem {
         position: absolute;
+        left: 50%;
+        top: 15%;
       }
       .titlem::after {
-        content: "スロット - 28HR - 管理画面";
+        content: "受け取ったおはじきの枚数を入力してボタンで送信";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 250%;
+        white-space: nowrap;
+      }
+      .titlesm {
+        position: absolute;
+        left: 50%;
+        top: 18%;
+      }
+      .titlesm::after {
+        content: "";
         position: absolute;
         left: 50%;
         top: 50%;
@@ -67,6 +83,7 @@
   <body>
     <div class="all">
       <div class="titlem"></div>
+      <div class="titlesm"></div>
       <div class="i1">
         <input id="text1" class="in1" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
         <button onclick="send(1,'text1')" class="bt1">送信1</button>

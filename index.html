@@ -6,20 +6,43 @@
     <meta name="google" content="notranslate">
     <title>スロット - 28HR - 管理画面</title>
     <style>
+      body {
+        touch-action: manipulation;
+        margin: 0;
+        overflow: hidden;
+      }
+      .titlem {
+        position: absolute;
+      }
+      .i1,
+      .i2,
+      .i3 {
+        position: absolute;
+      }
+      .i1 {
+        position: absolute;
+      }
+      .i2 {
+        position: absolute;
+      }
+      .i3 {
+        position: absolute;
+      }
     </style>
   </head>
   <body>
-    <div>
-      <input id="text1" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
-      <button onclick="send(1,'text1')">送信1</button>
+    <div class="titlem"></div>
+    <div class="i1">
+      <input id="text1" class="in1" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
+      <button onclick="send(1,'text1')" class="bt1">送信1</button>
     </div>
-    <div>
-      <input id="text2" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
-      <button onclick="send(2,'text2')">送信2</button>
+    <div class="i2">
+      <input id="text2" class="in2" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
+      <button onclick="send(2,'text2')" class="bt2">送信2</button>
     </div>
-    <div>
-      <input id="text3" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
-      <button onclick="send(3,'text3')">送信3</button>
+    <div class="i3">
+      <input id="text3" class="in3" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
+      <button onclick="send(3,'text3')" class="bt3">送信3</button>
     </div>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";

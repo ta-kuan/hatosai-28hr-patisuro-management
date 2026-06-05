@@ -133,16 +133,22 @@
         <div class="tx1">id1</div>
         <input id="text1" class="in1" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
         <button onclick="send(1,'text1')" class="bt1">送信1</button>
+        <div class="ti1"></div>
+        <button class="stst1"></button>
       </div>
       <div class="i2">
         <div class="tx2">id2</div>
         <input id="text2" class="in2" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
         <button onclick="send(2,'text2')" class="bt2">送信2</button>
+        <div class="ti2"></div>
+        <button class="stst2"></button>
       </div>
       <div class="i3">
         <div class="tx3">id3</div>
         <input id="text3" class="in3" type="number" value=1 min="1"　type="text" inputmode="numeric" pattern="[0-9]*" title="半角数字で入力してください">
         <button onclick="send(3,'text3')" class="bt3">送信3</button>
+        <div class="ti3"></div>
+        <button class="stst3"></button>
       </div>
     </div>
     <script type="module">
@@ -168,6 +174,34 @@
           set(ref(db, "messages/" + id), text);
         }
       };
+      const ti1 = document.querySelector(".ti1");
+      const ti2 = document.querySelector(".ti2");
+      const ti3 = document.querySelector(".ti3");
+      const stst1 = document.querySelector(".stst1");
+      const stst2 = document.querySelector(".stst2");
+      const stst3 = document.querySelector(".stst3");
+      stst1.textContent = "開始";
+      stst2.textContent = "開始";
+      stst3.textContent = "開始";
+      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      async function start() {
+      }
+      stst1.addEventListener('click', () => {
+        if (stst1.textContent === "開始") {
+          start(ti1,stst1);
+        } else if (stst1.textContent === "停止"){
+        }
+      });
+      stst2.addEventListener('click', () => {
+        if (stst1.textContent === "開始") {
+        } else if (stst1.textContent === "停止"){
+        }
+      });
+      stst3.addEventListener('click', () => {
+        if (stst1.textContent === "開始") {
+        } else if (stst1.textContent === "停止"){
+        }
+      });
     </script>
   </body>
 </html>

@@ -122,6 +122,51 @@
         transform: translateX(-50%);
         font-size: 130%;
       }
+      .stst1, 
+      .stst2,
+      .stst3 {
+        position: absolute;
+        padding: 0;
+        width: 35%;
+        height: 35%;
+        left: 50%;
+        bottom: -15%;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transform: translateX(-50%);
+        font-size: 130%;
+      }
+      .ti1, 
+      .ti2,
+      .ti3 {
+        position: absolute;
+        padding: 0;
+        width: 35%;
+        height: 35%;
+        left: 50%;
+        bottom: -5%;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transform: translateX(-75%);
+        font-size: 100%;
+      }
+      .ri1, 
+      .ri2,
+      .ri3 {
+        position: absolute;
+        padding: 0;
+        width: 35%;
+        height: 35%;
+        left: 50%;
+        bottom: -15%;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transform: translateX(-25%);
+        font-size: 130%;
+      }
     </style>
   </head>
   <body>
@@ -180,27 +225,83 @@
       const stst1 = document.querySelector(".stst1");
       const stst2 = document.querySelector(".stst2");
       const stst3 = document.querySelector(".stst3");
+      const ri1 = document.querySelector(".ri1");
+      const ri2 = document.querySelector(".ri2");
+      const ri3 = document.querySelector(".ri3");
+      const timer1 = { m: 0, s: 0, c: 0 };
+      const timer2 = { m: 0, s: 0, c: 0 };
+      const timer3 = { m: 0, s: 0, c: 0 };
       stst1.textContent = "開始";
       stst2.textContent = "開始";
       stst3.textContent = "開始";
       const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-      async function start() {
+      async function down(ti, stst, timer) {
+        while (timer.c === 1) {
+          await sleep(1000);
+          if (timer.c === 0) break;
+          if (timer.s !== 0) {
+            timer.s--;
+          } else {
+            timer.s = 59;
+            timer.m--;
+          }
+          ti.textContent =
+            timer.m + ":" + String(timer.s).padStart(2, "0");
+          if (timer.m === 0 && timer.s === 0) {
+            timer.c = 0;
+            stst.textContent = "開始";
+            break;
+          }
+        }
       }
-      stst1.addEventListener('click', () => {
+      function start(ti, stst, timer) {
+        timer.c = 1;
+        timer.m = 5;
+        timer.s = 0;
+        ti.textContent =
+          timer.m + ":" + String(timer.s).padStart(2, "0");
+        stst.textContent = "停止";
+        down(ti, stst, timer);
+      }
+      function reset(ti, stst, timer) {
+        timer.c = 0;
+        timer.m = 0;
+        timer.s = 0;
+        ti.textContent = "0:00";
+        stst.textContent = "開始";
+      }
+      stst1.addEventListener("click", () => {
         if (stst1.textContent === "開始") {
-          start(ti1,stst1);
-        } else if (stst1.textContent === "停止"){
+          start(ti1, stst1, timer1);
+        } else {
+          timer1.c = 0;
+          stst1.textContent = "開始";
         }
       });
-      stst2.addEventListener('click', () => {
-        if (stst1.textContent === "開始") {
-        } else if (stst1.textContent === "停止"){
+      stst2.addEventListener("click", () => {
+        if (stst2.textContent === "開始") {
+          start(ti2, stst2, timer2);
+        } else {
+          timer2.c = 0;
+          stst2.textContent = "開始";
         }
       });
-      stst3.addEventListener('click', () => {
-        if (stst1.textContent === "開始") {
-        } else if (stst1.textContent === "停止"){
+      stst3.addEventListener("click", () => {
+        if (stst3.textContent === "開始") {
+          start(ti3, stst3, timer3);
+        } else {
+          timer3.c = 0;
+          stst3.textContent = "開始";
         }
+      });
+      ri1.addEventListener("click", () => {
+        reset(ti1, stst1, timer1);
+      });
+      ri2.addEventListener("click", () => {
+        reset(ti2, stst2, timer2);
+      });
+      ri3.addEventListener("click", () => {
+        reset(ti3, stst3, timer3);
       });
     </script>
   </body>

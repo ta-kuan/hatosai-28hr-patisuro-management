@@ -216,10 +216,15 @@
       signInAnonymously(auth);
       // 送信
       window.send = (id, inputId) => {
-        const result = confirm("id" + id + "のコインを" + document.getElementById(inputId).value + "に変更");
+        const result = confirm(
+          "id" + id + "のコインを" + document.getElementById(inputId).value + "に変更"
+        );
         if (result) {
           const text = document.getElementById(inputId).value;
-          set(ref(db, "messages/" + id), text);
+          set(ref(db, "messages/" + id), {
+            value: text,
+            time: Date.now()
+          });
         }
       };
       const ti1 = document.querySelector(".ti1");

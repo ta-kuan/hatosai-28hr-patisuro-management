@@ -231,14 +231,16 @@
       const ri1 = document.querySelector(".ri1");
       const ri2 = document.querySelector(".ri2");
       const ri3 = document.querySelector(".ri3");
-      const timer1 = { m: 0, s: 0, c: 0 };
-      const timer2 = { m: 0, s: 0, c: 0 };
-      const timer3 = { m: 0, s: 0, c: 0 };
+      const timer1 = { m: 0, s: 0, c: 0, running: false };
+      const timer2 = { m: 0, s: 0, c: 0, running: false };
+      const timer3 = { m: 0, s: 0, c: 0, running: false };
       stst1.textContent = "開始";
       stst2.textContent = "開始";
       stst3.textContent = "開始";
       const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       async function down(ti, stst, timer) {
+        if (timer.running) return;
+        timer.running = true;
         while (timer.c === 1) {
           await sleep(1000);
           if (timer.c === 0) break;
@@ -256,11 +258,14 @@
             break;
           }
         }
+        timer.running = false;
       }
       function start(ti, stst, timer) {
         timer.c = 1;
-        timer.m = 5;
-        timer.s = 0;
+        if (timer.m === 0 && timer.s === 0) {
+          timer.m = 5;
+          timer.s = 0;
+        }
         ti.textContent =
           timer.m + ":" + String(timer.s).padStart(2, "0");
         stst.textContent = "停止";
